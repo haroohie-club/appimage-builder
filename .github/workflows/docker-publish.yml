@@ -12,7 +12,10 @@ env:
 
 jobs:
   build-and-push-image:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [ 'ubuntu-latest', 'ubuntu-24.04-arm' ]
+    runs-on: ${{ matrix.image }}
     permissions:
       contents: read
       packages: write
